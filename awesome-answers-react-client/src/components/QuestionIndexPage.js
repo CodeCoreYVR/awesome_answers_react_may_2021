@@ -1,6 +1,7 @@
 import React, { Component} from 'react';
-import questionsIndexData from '../questionsIndexData';
+// import questionsIndexData from '../questionsIndexData';
 import NewQuestionForm from './NewQuestionForm';
+import { Question } from '../requests';
 
 export class QuestionIndexPage extends Component {
 
@@ -8,10 +9,21 @@ export class QuestionIndexPage extends Component {
         //if you are using a class component and want to access 'this', must call super(props) in constructor
         super(props)
         this.state = {
-            questions: questionsIndexData
+            questions: []
         }
         this.createQuestion = this.createQuestion.bind(this);
         //console.log('Questionindex Component initialized');
+    }
+
+    componentDidMount(){
+        Question.index()
+        .then((questions) => {
+            this.setState((state) => {
+                return {
+                    questions: questions
+                }
+            })
+        })
     }
 
     createQuestion(params) {

@@ -39,11 +39,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        {
-          this.state.clocksCount.map((count, index) => {
-            return <CurrentDateTime key={index} shouldShowTime={true}/>
-          })
-        }
+        < QuestionIndexPage />
       </div>
     )
   }
