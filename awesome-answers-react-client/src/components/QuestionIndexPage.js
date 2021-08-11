@@ -49,7 +49,7 @@ export class QuestionIndexPage extends Component {
         //lets overwrite the current questions state
         this.setState((state) => {
             return  {
-                questions: state.questions.filter(q => q.id != id) //questions in this.state would be different than questions in this.setState()
+                questions: state.questions.filter(q => q.id !== id) //questions in this.state would be different than questions in this.setState()
                 //the above new questions object gets merged with the original this.state (new state has the same key => it will take the value of the new key instead of the old)
             }
         })
