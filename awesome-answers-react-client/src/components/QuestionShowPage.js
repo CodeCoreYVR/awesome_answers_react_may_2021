@@ -22,7 +22,8 @@ class QuestionShowPage extends Component {
   }
 
   componentDidMount(){
-    Question.show(183) //just hard coding for now
+    // Question.show(183) //just hard coding for now
+    Question.show(this.props.match.params.id)
     .then((question) => {
       this.setState((state) => {
         return {
@@ -45,16 +46,15 @@ class QuestionShowPage extends Component {
 
   render() {
     console.log('Question show page rendered');
-    //const {title, body, author, view_count, created_at, updated_at} = this.state;
+    const {title, body, author, view_count, created_at} = this.state.question;
     return(
       <main>
         <QuestionDetails 
-          title={this.state.title}
-          body={this.state.body}
-          author={this.state.author}
-          view_count={this.state.view_count}
-          created_at={new Date(this.state.created_at)}
-          updated_at={new Date(this.state.updated_at)}
+          title={title}
+          body={body}
+          author={author}
+          view_count={view_count}
+          created_at={new Date(created_at)}
         />
         <h2>Answers: </h2>
         <AnswerList

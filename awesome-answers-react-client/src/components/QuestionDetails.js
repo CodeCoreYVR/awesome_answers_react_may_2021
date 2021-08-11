@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const QuestionDetails = ({title, body, author, view_count, created_at, updated_at}) => {
+export const QuestionDetails = ({title, body, author, view_count, created_at}) => {
     const randomNumber = 500 + 1000;
   
     //const randomDiv = <div>alksdjflasj</div>;
