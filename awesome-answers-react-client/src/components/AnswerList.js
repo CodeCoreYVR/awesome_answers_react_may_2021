@@ -1,7 +1,8 @@
 import React from 'react';
 import AnswerDetails from './AnswerDetails';
 
-const AnswerList = ({answers, deleteAnswer}) => {
+const AnswerList = (props, deleteAnswer) => {
+    const answers = props.answers
     //Goal: Given an array of answers object (from the props), return answer details for 
     //each individual answer inside the answers array
 
@@ -11,16 +12,19 @@ const AnswerList = ({answers, deleteAnswer}) => {
     return (
         <div>
             {
+                answers ? 
                 answers.map((a, i) => {
                     return <AnswerDetails
                         key={i} 
                         id={a.id}
                         body={a.body}
                         author={a.author}
-                        created_at={a.created_at}
+                        created_at={a.created_at.toLocaleString()}
                         deleteAnswer={deleteAnswer}
                     />
                 })
+                :
+                null
             }
         </div>
     )

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {QuestionDetails} from './QuestionDetails';
 import AnswerList from './AnswerList';
-import questionData from '../questionData';
+// import questionData from '../questionData';
+import { Question } from '../requests';
 
 //Class components are essentially functional components with a few extra features => (state)
 class QuestionShowPage extends Component {
@@ -11,12 +12,24 @@ class QuestionShowPage extends Component {
     //State vs Props:
     //state is owned by a component and held in that component and changes over time
     //props is data that is received by a parent component, and passed between components
-    this.state = questionData;
+    // this.state = questionData;
+    this.state = { question: {} }
 
     //Type Error: cannot read property 'setState' of undefined  -> must bind this to the method we want to pass as props
     //Anytime passing down methods to other child components that use this method you have to bind 'this' to that method
     //i.e. accessing the function we want to bind this value to (bind is a method of function)
     this.deleteAnswer = this.deleteAnswer.bind(this);
+  }
+
+  componentDidMount(){
+    Question.show(183) //just hard coding for now
+    .then((question) => {
+      this.setState((state) => {
+        return {
+          question: question
+        }
+      })
+    })
   }
 
   //Note: In order for a child component to update the state of a parent component, we'd have to
@@ -43,6 +56,7 @@ class QuestionShowPage extends Component {
           created_at={new Date(this.state.created_at)}
           updated_at={new Date(this.state.updated_at)}
         />
+        <h2>Answers: </h2>
         <AnswerList
           answers= {this.state.answers}
           deleteAnswer={this.deleteAnswer}

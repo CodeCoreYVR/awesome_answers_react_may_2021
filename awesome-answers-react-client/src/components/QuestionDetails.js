@@ -11,10 +11,10 @@ export const QuestionDetails = ({title, body, author, view_count, created_at, up
         <div>
           <h2>{title}</h2>
           <p>{body}</p>
-          <p>By: {author.full_name} | {randomNumber}</p>
+          <p>By: { author ? author.first_name : null } | {randomNumber}</p>
           <p>
             <small>Seen {view_count}</small>
-            <small>Last edited {updated_at.toLocaleString()}</small>
+            <small>Created at {created_at.toLocaleString()}</small>
           </p>
         </div>
     )

@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import './App.css';
 import QuestionShowPage from './components/QuestionShowPage';
 import {QuestionIndexPage} from './components/QuestionIndexPage';
-import CurrentDateTime from './components/CurrentDateTime';
+// import CurrentDateTime from './components/CurrentDateTime';
 import { Session } from './requests'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 // function App() {
 //   return (
@@ -38,9 +39,12 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        < QuestionIndexPage />
-      </div>
+      <BrowserRouter>
+        <Route exact path='/questions'>
+          <QuestionIndexPage />
+        </Route>
+        <Route path='/questions/:id' component={QuestionShowPage}></Route>
+      </BrowserRouter>
     )
   }
 }
