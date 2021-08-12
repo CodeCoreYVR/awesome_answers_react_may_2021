@@ -9,6 +9,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import NewQuestionPage from './components/NewQuestionPage';
 import SignInPage from './components/SignInPage';
+import AuthRoute from './components/AuthRoute';
 
 // function App() {
 //   return (
@@ -67,7 +68,12 @@ class App extends Component {
           <Route exact path='/questions'>
             <QuestionIndexPage />
           </Route>
-          <Route path='/questions/new' component={NewQuestionPage}></Route>
+          <AuthRoute
+            //The !! turns something "truthy" or "falsy" to true or false respectively
+            isAuthenticated={!!this.state.user}
+            exact path='/questions/new'
+            component={NewQuestionPage}
+          />
           <Route path='/questions/:id' component={QuestionShowPage}></Route>
           </Switch>
       </BrowserRouter>
