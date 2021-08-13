@@ -1,7 +1,8 @@
 import React from 'react';
+import FormErrors from './FormErrors'
 
 //functional component
-const NewQuestionForm = ({createQuestion}) => {
+const NewQuestionForm = (props) => {
 
     const handleSubmit = (event) => {
        event.preventDefault();
@@ -11,7 +12,7 @@ const NewQuestionForm = ({createQuestion}) => {
             body: formData.get('body')
         }
 
-        createQuestion(params);
+        props.createQuestion(params);
     }
     return(
         <form onSubmit={handleSubmit}>
@@ -19,11 +20,15 @@ const NewQuestionForm = ({createQuestion}) => {
                 <label htmlFor="title">Title</label>
                 <br />
                 <input name='title' id='title' ></input>
+                <FormErrors forField="title" errors={props.errors} />
+                <br/>
             </div>
             <div>
                 <label htmlFor='body'>Body</label>
                 <br />
                 <textarea name='body' id='body' ></textarea>
+                <FormErrors forField="body" errors={props.errors} />
+                <br/>
             </div>
             <div>
                 <input type='submit' value='submit' />
