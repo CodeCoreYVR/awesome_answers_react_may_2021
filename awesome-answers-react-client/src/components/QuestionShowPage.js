@@ -58,7 +58,7 @@ class QuestionShowPage extends Component {
         />
         <h2>Answers: </h2>
         <AnswerList
-          answers= {this.state.answers}
+          answers= {this.state.question.answers}
           deleteAnswer={this.deleteAnswer}
         />
       </main>

@@ -2,6 +2,7 @@ import React, { Component} from 'react';
 // import questionsIndexData from '../questionsIndexData';
 // import NewQuestionForm from './NewQuestionForm';
 import { Question } from '../requests';
+import { Link } from 'react-router-dom';
 
 export class QuestionIndexPage extends Component {
 
@@ -75,7 +76,8 @@ export class QuestionIndexPage extends Component {
                     this.state.questions.map(q => {
                         return(
                             <div key={q.id}>
-                                <h1>{q.id} - {q.title}</h1>
+                                 <Link to={`/questions/${q.id}`}><h1>{q.id} - {q.title}</h1></Link>
+                               
                                 <button onClick={() => this.deleteQuestion(q.id)}>Delete</button>
                             </div>
                         )

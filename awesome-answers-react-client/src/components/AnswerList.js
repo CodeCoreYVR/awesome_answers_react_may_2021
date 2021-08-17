@@ -2,6 +2,7 @@ import React from 'react';
 import AnswerDetails from './AnswerDetails';
 
 const AnswerList = (props, deleteAnswer) => {
+    console.log(`AnswerList props:${props.answers}`)
     const answers = props.answers
     //Goal: Given an array of answers object (from the props), return answer details for 
     //each individual answer inside the answers array
@@ -18,8 +19,8 @@ const AnswerList = (props, deleteAnswer) => {
                         key={i} 
                         id={a.id}
                         body={a.body}
-                        author={a.author}
-                        created_at={a.created_at.toLocaleString()}
+                        author_full_name={a.author_full_name}
+                        created_at={new Date(a.created_at.toLocaleString())}
                         deleteAnswer={deleteAnswer}
                     />
                 })
